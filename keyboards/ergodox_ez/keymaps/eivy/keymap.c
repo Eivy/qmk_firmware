@@ -61,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * |        |   #  |   $  |   (  |   )  |   `  |------|           |------| Left | Down |  Up  | Right|      |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |   %  |   ^  |   [  |   ]  |   ~  |      |           |      |      | Menu |      |      |      |        |
+ * |        |   %  |   ^  |   [  |   ]  |   ~  |      |           |      |      | Menu |NUMLCK|PAUSE | INS  |        |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   |      |      |      |      |      |                                       |      |      |      |      |      |
  *   `----------------------------------'                                       `----------------------------------'
@@ -85,10 +85,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                KC_TRNS,
                                KC_TRNS,KC_TRNS,KC_TRNS,
        // right hand
-       KC_TRNS, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
-       KC_TRNS, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_NO,   KC_F12,
-                KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_NO,   KC_ENT,
-       KC_TRNS, KC_NO,   KC_APP,  KC_NO,   KC_NO,   KC_NO,   KC_TRNS,
+       KC_TRNS, KC_F6,   KC_F7,   KC_F8,      KC_F9,      KC_F10,  KC_F11,
+       KC_TRNS, KC_HOME, KC_PGDN, KC_PGUP,    KC_END,     KC_NO,   KC_F12,
+                KC_LEFT, KC_DOWN, KC_UP,      KC_RGHT,    KC_NO,   KC_ENT,
+       KC_TRNS, KC_NO,   KC_APP,  KC_NUMLOCK, KC_PAUSE,   KC_INSERT,   KC_TRNS,
                          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
        KC_TRNS, KC_TRNS,
        KC_TRNS,

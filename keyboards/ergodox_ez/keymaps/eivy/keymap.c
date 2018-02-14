@@ -23,7 +23,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *   |CtlWin| Prsc |   ¥  | Alt  | Del  |                                       |Enter | Prsc |   [  |   ]  | L2   |
  *   `----------------------------------'                                       `----------------------------------'
  *                                     ,---------------.          ,-------------.
- *                                     | App  | Space  |          | RSift|  Alt |
+ *                                     |LShift| Space  |          | RSift|  Alt |
  *                              ,------|------|--------|          |------+------+------.
  *                              |      |      | Home   |          | End  |      |      |
  *                              |Back  |Eis/L2|--------|          |------|Kan/L1|Space/|

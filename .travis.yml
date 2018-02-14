@@ -35,3 +35,4 @@ deploy:
   file: ergodox_ez_eivy.hex
   on:
     repo: Eivy/qmk_firmware
+    tags: true

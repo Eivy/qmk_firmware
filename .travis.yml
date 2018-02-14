@@ -5,20 +5,19 @@ group: edge
 language: c
 branches:
   except:
-    - /^.*-automated-build$/
-    - /^[0-9]+\.[0-9]+\.[0-9]+/
+  - "/^.*-automated-build$/"
+  - "/^[0-9]+\\.[0-9]+\\.[0-9]+/"
 before_install:
-  - wget http://ww1.microchip.com/downloads/en/DeviceDoc/avr8-gnu-toolchain-3.5.4.1709-linux.any.x86_64.tar.gz || wget http://qmk.fm/avr8-gnu-toolchain-3.5.4.1709-linux.any.x86_64.tar.gz
+- wget http://ww1.microchip.com/downloads/en/DeviceDoc/avr8-gnu-toolchain-3.5.4.1709-linux.any.x86_64.tar.gz
+  || wget http://qmk.fm/avr8-gnu-toolchain-3.5.4.1709-linux.any.x86_64.tar.gz
 install:
-  - tar -zxf avr8-gnu-toolchain-3.5.4.1709-linux.any.x86_64.tar.gz
-  - export PATH="$PATH:$TRAVIS_BUILD_DIR/avr8-gnu-toolchain-linux_x86_64/bin"
+- tar -zxf avr8-gnu-toolchain-3.5.4.1709-linux.any.x86_64.tar.gz
+- export PATH="$PATH:$TRAVIS_BUILD_DIR/avr8-gnu-toolchain-linux_x86_64/bin"
 before_script:
-  - avr-gcc --version
+- avr-gcc --version
 script:
 - make test:all AUTOGEN=false
-- bash util/travis_build.sh
 - make ergodox_ez:eivy
-- ls
 addons:
   apt:
     packages:
@@ -29,5 +28,10 @@ addons:
     - libnewlib-arm-none-eabi
     - diffutils
     - dos2unix
-after_success:
-  bash util/travis_compiled_push.sh
+deploy:
+  provider: releases
+  api_key:
+    secure: JpaTdosL+IIQvGiwYrPsREd+hxW6Rt0LMANP9GQbt1ZOo3K0RQRc7RcuVjaWhmEo96b2p7mw2S3V8ZpdMtgV7PkPxagCtCjCBI5JmEzhQw/Z+ihDo+vDgeiXrPSpe+tlyy43vr4pjovoOkrkydinLX9Y1KsGCK6Lf5vlxXm6bLgPiJj31jSYHre1YZvQptee+4+ZiyWnBfxU+RL+jBFuHS1zL6FrW1yIYaXkLdBPQT2ol3URrt0jEbRb14D4AoyOFMJsfvXTWsZ+oOtmR3YA3Vrz9jdrsbrRlC1866g3RZfy7Oui9lWn24QqjGgrW8nfqCz3Sz8nwIU59kOqTnn35hCHEAQCf3nNJqE2ArH32uK8j8TQ3akJrybcKSTS6KJadnUAWRDCGhOBsvmwGfN1eeCLtYU62/aTw9L+QjEh9mP5kXJFn91E56h868CE3cHxAgfJZ5PR2IeUHkCd5T7VMjQJh9mv5/OwG7RVxmviTnCKnAKKEcdl4FMu4OfL+VX2tO0/W2IvuZkWvvu4tWZ6Ykc6MfS9RP4nZOBQc0YeSrc7NJ328WR6rZsFK4cpYnTdyUa2DxxZzoT6HgE9oQgZW1RD+YS5bmCjbOYXTSQfy6VfW4h58h2lPnuF4IkxrCQodip+uO5CIyTa4qsyCv42Ifki7GJGDiqpQ0Gjz/JUIL8=
+  file: ergodox_ez_eivy.hex
+  on:
+    repo: Eivy/qmk_firmware

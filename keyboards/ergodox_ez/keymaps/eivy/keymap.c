@@ -20,14 +20,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|  `   |           |  ]   |------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  |   \    |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |CtlCmd| Prsc |   ¥  | Alt  | Del  |                                       |Enter | Prsc |   [  |   ]  | L2   |
+ *   |CtlCmd| Prsc |   ¥  | Alt  | LCmd |                                       |Enter | Prsc |   [  |   ]  | L2   |
  *   `----------------------------------'                                       `----------------------------------'
  *                                     ,---------------.          ,-------------.
  *                                     |LShift| Space  |          | RSift|  Alt |
  *                              ,------|------|--------|          |------+------+------.
  *                              |      |      | Home   |          | End  |      |      |
  *                              |Back  |Eis/L2|--------|          |------|Kan/L1|Space/|
- *                              | Space|      | LCmd   |          | RCmd |      | Shift|
+ *                              | Space|      |  Del   |          | RCmd |      | Shift|
  *                              `----------------------'          `--------------------'
  */
 // If it accepts an argument (i.e, is a function), it doesn't need KC_.
@@ -38,10 +38,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,        KC_Q,  KC_W,    KC_E,    KC_R,               KC_T,            KC_BSLS,
         KC_LCTRL,      KC_A,  KC_S,    KC_D,    KC_F,               KC_G,
         KC_LSFT,       KC_Z,  KC_X,    KC_C,    KC_V,               KC_B,            KC_GRV,
-        LCTL(KC_LGUI), KC_RO, KC_JYEN, KC_LALT, KC_DELT,
+        LCTL(KC_LGUI), KC_RO, KC_JYEN, KC_LALT, KC_LGUI,
                                                                     KC_LSFT,         KC_SPC,
                                                                                      KC_HOME,
-                                                                    KC_BSPC,         LT(DDWW, KC_LANG2), KC_LGUI,
+                                                                    KC_BSPC,         LT(DDWW, KC_LANG2), KC_DELT,
         // right hand
              KC_BSPC, KC_6,            KC_7,              KC_8,       KC_9,    KC_0,     KC_EQL,
              KC_LBRC, KC_Y,            KC_U,              KC_I,       KC_O,    KC_P,     KC_MINS,

@@ -83,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,MO(MDIA),
                                        KC_TRNS,KC_TRNS,
                                                KC_TRNS,
-                               KC_TRNS,KC_TRNS,KC_TRNS,
+                               KC_TRNS,MO(MDIA),KC_TRNS,
        // right hand
        KC_TRNS, KC_F6,   KC_F7,   KC_F8,      KC_F9,      KC_F10,  KC_F11,
        KC_TRNS, KC_HOME, KC_PGDN, KC_PGUP,    KC_END,     KC_NO,   KC_F12,
@@ -133,7 +133,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                               KC_KP_0,        KC_KP_DOT, KC_NO,   KC_NO,       KC_TRNS,
        KC_TRNS, KC_TRNS,
        KC_TRNS,
-       KC_TRNS, KC_TRNS, KC_TRNS
+       KC_TRNS, MO(MDIA), KC_TRNS
 ),
 /* Keymap 3: Media and mouse keys
  *

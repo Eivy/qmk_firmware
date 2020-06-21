@@ -33,6 +33,7 @@ enum layer_number {
     _LOWER,
     _RAISE,
     _ADJUST,
+    _FFF,
 };
 
 enum custom_keycodes {
@@ -46,7 +47,8 @@ enum custom_keycodes {
   GUI1,
   GUI2,
   RGBRST,
-  FLOGGY
+  FLOGGY,
+  FFF
 };
 
 enum macro_keycodes {
@@ -69,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |-----+-----+-----+-----+-----+-------+-------+-------+------+------+-------+-------+------+-----|
    * |Shift|  Z  |  X  |  C  |  V  |   B   |  ESC  |Backsp |   N  |   M  |   ,   |   .   |   /  |  \  |
    * |-----+-----+-----+-----+-----+-------+-------+-------+------+------+-------+-------+------+-----|
-   * |Op/Wi|Adjst| Spc |  [  |  ]  |Cmd/Alt|Eis/Low|Kan/Rai|Sht/Sp|Enter |Opt/Win|Cmd/Alt|   ¥  | Esc |
+   * |Op/Wi|Adjst| Spc |  [  |  ]  |Cmd/Alt|Eis/Low|Kan/Rai|Sht/Sp|Enter |Opt/Win|Cmd/Alt|   ¥  | FFF |
    * `------------------------------------------------------------------------------------------------'
    */
   [_QWERTY] = LAYOUT( \
@@ -77,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TAB,  KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                  KC_Y,          KC_U,   KC_I,    KC_O,   KC_P,    KC_MINS,\
       KC_LCTL, KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                  KC_H,          KC_J,   KC_K,    KC_L,   KC_SCLN, KC_QUOT,\
       KC_LSFT, KC_Z,   KC_X,   KC_C,   KC_V,   KC_B, KC_GRV, KC_BSPC, KC_N,          KC_M,   KC_COMM, KC_DOT, KC_SLSH, KC_BSLS,\
-      GUI2,    ADJUST, KC_SPC, KC_LBRC,KC_RBRC,GUI1, EISU,   KANA,    SFT_T(KC_SPC), KC_ENT, GUI2,    GUI1,   KC_LBRC, KC_ESC  \
+      GUI2,    ADJUST, KC_SPC, KC_LBRC,KC_RBRC,GUI1, EISU,   KANA,    SFT_T(KC_SPC), KC_ENT, GUI2,    GUI1,   KC_LBRC, TG(_FFF)\
       ),
 
   /* Lower
@@ -141,7 +143,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       XXXXXXX, XXXXXXX, XXXXXXX, AU_ON,   AU_OFF,  AG_NORM,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,\
       XXXXXXX, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, QWERTY,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,\
       RGB_TOG, _______, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, FLOGGY,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX \
-      )
+      ),
+  /* FFF (For FinalFantasy14
+   * ,-----------------------------------------.             ,-----------------------------------------.
+   * |      |      |      |      |      |      |             |  1   |   2  |   3  |Ctrl+1|Ctrl+2|Ctrl+3|
+   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
+   * |      |      |      |      |      |      |             |  4   |   5  |   6  |Ctrl+4|Ctrl+5|Ctrl+6|
+   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
+   * |      |      |      |      |      |      |             |  7   |   8  |   9  |Ctrl+7|Ctrl+8|Ctrl+9|
+   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+   * |      |      |      |      |      |      |ScLock|  B   |  0   |   -  |   '  |Ctrl+0|Ctrl+-|Ctrl+'|
+   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+   * |      |      |      |      |      |      |PrntSc|Shft+1|Shft+2|Shft+3|Shft+4| KC_0 | KP_. |      |
+   * `-------------------------------------------------------------------------------------------------'
+   */
+  [_FFF] =  LAYOUT( \
+      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_1,    KC_2,    KC_3,    C(KC_1), C(KC_2),    C(KC_3), \
+      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_4,    KC_5,    KC_6,    C(KC_4), C(KC_5),    C(KC_6), \
+      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_7,    KC_8,    KC_9,    C(KC_7), C(KC_8),    C(KC_9), \
+      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_SLCK, KC_B,    KC_0,    KC_MINS, KC_QUOT, C(KC_0), C(KC_MINS), C(KC_QUOT), \
+      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PSCR, S(KC_1), S(KC_2), S(KC_3), S(KC_4), KC_P0,   KC_PDOT,    _______  \
+      ),
 };
 
 #elif MATRIX_ROWS == 8 // HELIX_ROWS == 4
@@ -431,6 +453,7 @@ void matrix_update(struct CharacterMatrix *dest,
 #define L_LOWER (1<<_LOWER)
 #define L_RAISE (1<<_RAISE)
 #define L_ADJUST (1<<_ADJUST)
+#define L_FFF (1<<_FFF)
 #define L_ADJUST_TRI (L_ADJUST|L_RAISE|L_LOWER)
 
 static void render_logo(struct CharacterMatrix *matrix) {
@@ -475,6 +498,9 @@ static void render_layer_status(struct CharacterMatrix *matrix) {
            break;
         case L_LOWER:
            matrix_write_P(matrix, PSTR("Lower"));
+           break;
+        case L_FFF:
+           matrix_write_P(matrix, PSTR("FF14"));
            break;
         case L_ADJUST:
         case L_ADJUST_TRI:

@@ -1,0 +1,4 @@
+#define ONESOHT_TIMEOUT 400
+#undef TAPPING_TERM
+#define TAPPING_TERM 250
+#define MASTER_RIGHT
